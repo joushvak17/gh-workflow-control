@@ -41,7 +41,7 @@ jobs:
         # Use the if conditional to only upload the test report if the tests fail
         # Use the failure() function to run the step only if the previous step failed
         if: failure() && steps.run-tests.outcome == 'failure'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: test.json
