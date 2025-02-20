@@ -33,8 +33,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
+        # Create a unique ID for this step
+        id: run-tests
         run: npm run test
       - name: Upload test report
+        # There is no point in uploading a test report if the tests pass
+        # Use the if conditional to only upload the test report if the tests fail
+        if: steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
